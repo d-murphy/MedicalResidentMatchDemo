@@ -3,22 +3,26 @@ import Stack from "@mui/material/Stack";
 import React, {useReducer} from "react"; 
 import Applicant from "./components/Applicant";
 import School from "./components/School";
-import { reducer } from "./reducer";
+import { reducer, getRandomState } from "./reducer";
 
 function App() {
-  const [state, dispatch] = useReducer(reducer, {lastTurn: 'other' })
+  const [state, dispatch] = useReducer(reducer, [getRandomState()])
+  console.log('here')
   return (
     <div className="App">
       <Stack>
         <div>
             My New App
         </div>
-        <div>
-            {`Current State: ${state.lastTurn}`}
-        </div>
-        <Button variant="outlined" onClick={() => dispatch('new')}>New</Button>
-        <Button variant="outlined" onClick={() => dispatch('other')}>Other</Button>
-        <Button variant="outlined" onClick={() => dispatch('playerTurn')}>Player Turn</Button>
+        {
+          state[state.length] ? 
+            <div>
+              {`Current State: ${state[state.length].message}`}
+          </div> : <></>
+        }
+        <Button variant="outlined" onClick={() => dispatch('oneTurn')}>One Turn</Button>
+        <Button variant="outlined" onClick={() => dispatch('solve')}>Solve</Button>
+        <Button variant="outlined" onClick={() => dispatch('reset')}>Reset</Button>
 
         <School name="Inst A" ranking={[{name: "Joe"}, {name: "Steve"}]} />
 

@@ -6,23 +6,23 @@ export type turn = {
     programs: {[index: string]: program}
 }
 
-type applicant = {
+export type applicant = {
     name: string, 
     tentativeMatch: string, 
     stable: boolean, 
     rank: {
         name: string, 
-        offered: false, 
-        tentativeMatch: false
+        offered: boolean, 
+        tentativeMatch: boolean
     }[]
 }
 
-type program = {
+export type program = {
     name: string, 
     capacity: number, 
     rank: {
         name: string, 
         offered: boolean, 
         tentativeMatch: boolean
-    }
+    }[]
 }
