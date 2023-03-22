@@ -44,7 +44,6 @@ function getRandomCapacity(){
 }
 
 export function getRandomState():turn  {
-    console.log('get random working'); 
     let newState: turn = {
         solved: false, 
         message: "Applicant and Program rankings are set.  Play the first turn in the matching algorithm or solve to see the end result.",
@@ -109,10 +108,10 @@ function oneTurn(currentState:turn[]){
                 newTurn.applications[applicantIndex].rank[programToCheckIndex].tentativeMatch = true;
                 newTurn.programs[programToCheckName].rank[currentAppIndexInProgram].tentativeMatch = true;
 
-                let bumpedAppIndex = findAppIndex(newTurn, lowestRankedAdmittedName)
+                let bumpedAppIndex = findAppIndex(newTurn, lowestRankedAdmittedName) as number; 
                 newTurn.applications[bumpedAppIndex].tentativeMatch = ""; 
                 newTurn.applications[bumpedAppIndex].stable = false;
-                let programInAppRankIndex = findProgramInAppRankIndex(newTurn, bumpedAppIndex, programToCheckName)
+                let programInAppRankIndex = findProgramInAppRankIndex(newTurn, bumpedAppIndex, programToCheckName) as number; 
                 newTurn.applications[bumpedAppIndex].rank[programInAppRankIndex].tentativeMatch = false;
                 newTurn.programs[programToCheckName].rank[lowestRankedAdmittedIndex].tentativeMatch = false;
                 newTurn.message = `${applicantName} proposes to ${programToCheckName} and is tentatively matched.
@@ -153,7 +152,7 @@ function findFirstUnofferedProgram(state:turn, applicantIndex:number){
 }
 
 function findCurrentApplicantIndex(programToCheck:program, applicantName:string){
-    let applicantIndex = -1;
+    let applicantIndex = null;
     for(let i=0; i<programToCheck.rank.length; i++){
         if(programToCheck.rank[i].name === applicantName){
             applicantIndex = i;
@@ -173,7 +172,7 @@ function findAdmittedCandidates(programToCheck:program){
 }
 
 function findAppIndex(state:turn, name:string){
-    let applicantIndex = -1;
+    let applicantIndex = null;
     for(let i=0; i<state.applications.length; i++){
         if(state.applications[i].name === name){
             applicantIndex = i;
@@ -183,7 +182,7 @@ function findAppIndex(state:turn, name:string){
 }
 
 function findProgramInAppRankIndex(state:turn, appIndex:number, programName:string){
-    let programIndex = -1;
+    let programIndex = null;
     for(let i=0; i<state.applications[appIndex].rank.length; i++){
         if(state.applications[appIndex].rank[i].name === programName){
             programIndex = i;
