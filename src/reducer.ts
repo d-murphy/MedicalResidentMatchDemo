@@ -46,7 +46,7 @@ function getRandomCapacity(){
 export function getRandomState():turn  {
     let newState: turn = {
         solved: false, 
-        message: "Applicant and Program rankings are set.  Play the first turn in the matching algorithm or solve to see the end result.",
+        message: "Applicant and program rankings are set.  Play the first turn in the matching algorithm or solve to see the end result.",
         applications: [
             {name: "Arthur", tentativeMatch: '', stable: false, rank: getRandomOrder(programNames)}, 
             {name: "Sunny", tentativeMatch: '', stable: false, rank: getRandomOrder(programNames)}, 

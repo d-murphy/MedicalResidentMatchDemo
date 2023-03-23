@@ -1,0 +1,25 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.iconPulse {
+  animation-name: iconPulse;
+  animation-duration: 1.5s;
+}
+
+@keyframes iconPulse {
+  0% {transform: scale(1.1)}
+  50% {transform: scale(1.4)}
+  100% {transform: scale(1)}
+}
+
+.textPulse {
+  animation-name: textPulse; 
+  animation-duration: 1.5s; 
+}
+
+@keyframes textPulse {
+  0% {transform: scale(1.05)}
+  50% {transform: scale(1.1)}
+  100% {transform: scale(1)}
+}
