@@ -24,3 +24,8 @@ body {
   100% {transform: scale(1)}
 }
 
+.MuiCard-root{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

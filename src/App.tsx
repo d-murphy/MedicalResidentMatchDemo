@@ -4,7 +4,7 @@ import Link from '@mui/material/Link';
 import Button from "@mui/material/Button"; 
 import React, { useState, useRef } from "react";
 import MatchSection from "./components/MatchSection";
-import backgroundImg from "./public/network.jpg"; 
+import headerImg from "./public/network.jpg"; 
 import { defaultTheme, darkTheme } from "./Themes";
 import { ThemeProvider } from '@mui/material/styles';
 
@@ -22,36 +22,39 @@ function App() {
             <Box className="App">
                     
                 <Grid container >
-                    <Grid item sm={1} md={2} xl={3} sx={{backgroundColor: theme.secondary.light}}/>
-                    <Grid item sm={10} md={8} xl={6}>
+                    <Grid item sm={1} md={2} xl={3} sx={{backgroundColor: theme.palette.primary.light, opacity: '.4'}}/>
+                    <Grid item sm={10} md={8} xl={6} >
                         <Box sx={{position: 'relative'}}>
                             <Box
                                 component="img"
-                                src={backgroundImg} 
+                                src={headerImg} 
                                 sx={{
                                 width: '100%',
                                 height: 'auto',
                                 opacity: '0.3'
                             }}></Box>
                             <Box sx={{position: 'absolute', top: "20px", left: "10px"}}>
-                                <Box sx={{fontSize:'large'}}>
-                                    The Match, a Demo
+                                <Box sx={{fontSize:'x-large', mb:3}}>
+                                    Medical Residency Match Demonstration
                                 </Box>
-                                <Box sx={{fontSize: 'small'}}>
-                                    See the stages of the algorithm behind the medical residency match.  Read more about the&nbsp;
-                                    <Link href="https://en.wikipedia.org/wiki/Stable_marriage_problem" target="_blank">algo</Link> or at the&nbsp;
-                                    <Link href="https://www.nrmp.org/intro-to-the-match/how-matching-algorithm-works/" target="_target">match</Link> site.
+                                <Box sx={{fontSize: 'medium'}}>
+                                    See the stages of the algorithm behind the medical residency match.&nbsp;&nbsp;
+                                    {/* Read more about the&nbsp;
+                                    <Link href="https://en.wikipedia.org/wiki/Stable_marriage_problem" target="_blank" color="secondary">algo</Link> or at the&nbsp;
+                                    <Link href="https://www.nrmp.org/intro-to-the-match/how-matching-algorithm-works/" target="_target"  color="secondary">match</Link> site. */}
                                 </Box>
                             </Box>
                             <Box sx={{position: 'absolute', bottom: "20px", left: "10px"}}>
-                                <Button variant="contained" color="primary" onClick={scrollDemoToView}>See the Demo</Button>
+                                <Button variant="contained" color="secondary" onClick={scrollDemoToView} >See the Demo</Button>
                             </Box>
                         </Box>
                     </Grid>
-                    <Grid item sm={1} md={2} xl={3} sx={{backgroundColor: theme.secondary.light}}/>
+                    <Grid item sm={1} md={2} xl={3} sx={{backgroundColor: theme.palette.primary.light, opacity: '.6'}}/>
                 </Grid>
 
-                <MatchSection demoRef={demoRef}/>
+                <Box sx={{mt: 5}}>
+                    <MatchSection demoRef={demoRef} />
+                </Box>
             </Box>
         </ThemeProvider>
     );
