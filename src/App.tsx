@@ -1,74 +1,59 @@
-import Button from "@mui/material/Button";
-import Stack from "@mui/material/Stack";
+import Grid from "@mui/material/Grid"; 
 import Box from '@mui/material/Box'; 
 import Link from '@mui/material/Link'; 
-import React, { useReducer } from "react";
-import Applicant from "./components/Applicant";
-import Program from "./components/Program";
-import { reducer, getRandomState } from "./reducer";
-import grey from "@mui/material/colors/grey";
+import Button from "@mui/material/Button"; 
+import React, { useState, useRef } from "react";
+import MatchSection from "./components/MatchSection";
+import backgroundImg from "./public/network.jpg"; 
+import { defaultTheme, darkTheme } from "./Themes";
+import { ThemeProvider } from '@mui/material/styles';
 
 function App() {
-    const [state, dispatch] = useReducer(reducer, [getRandomState()])
-    const lastTurn = state[state.length - 1];
-    const applications = lastTurn.applications;
-    const programs = lastTurn.programs;
-    const message = lastTurn.message;
-    const solved = lastTurn.solved;
+    const [theme, setTheme] = useState<typeof defaultTheme | typeof darkTheme>(defaultTheme); 
+    const demoRef = useRef<HTMLDivElement>(null); 
+
+    const scrollDemoToView = function(){
+        if(demoRef?.current) demoRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+
+
     return (
-        <Box className="App">
-            <Stack>
-                <Stack sx={{backgroundColor: 'lightskyblue', p:2, borderRadius:1}}>
-                    <Box 
-                        sx={{
-                            textAlign: "center", 
-                            fontSize: 'xx-large', 
-                            my:2
-                        }}>
-                        Match Algorithm Demo for Medical Residents
-                    </Box>
-                    <Box sx={{textAlign: "center"}}>
-                        The National Resident Match Program uses a version of the&nbsp;
-                        <Link href="https://en.wikipedia.org/wiki/Stable_marriage_problem">stable matching algorithm</Link>
-                        &nbsp;to pair medical residency applicants with available positions.
-                        This page demonstrates the stages of the algorithm, similar to this&nbsp;
-                        <Link href="https://www.nrmp.org/matching-algorithm/">NRMP video</Link>.
-                    </Box>
-                </Stack>
-                <Stack sx={{textAlign: "center", my:2, border: 1, borderRadius: 2, p:1}}>
-                    <Box sx={{my:1}}>Match Status:</Box>
-                    <Box sx={{backgroundColor: grey[300], py:2, borderRadius:1}}>{message}</Box>
-                    <Stack direction="row" sx={{width: '100%', alignItems:'center', justifyContent: 'center', mt:2}}>
-                        <Button sx={{mx:1}} variant="contained" onClick={() => dispatch('oneTurn')} disabled={solved} >Next Step</Button>
-                        <Button sx={{mx:1}} variant="contained" onClick={() => dispatch('solve')} disabled={solved} >Solve (Skip to end)</Button>
-                        <Button sx={{mx:1}} variant="contained" onClick={() => dispatch('reset')}>Reshuffle</Button>
-                    </Stack>
-                </Stack>
+        <ThemeProvider theme={theme}>
+            <Box className="App">
+                    
+                <Grid container >
+                    <Grid item sm={1} md={2} xl={3} sx={{backgroundColor: theme.secondary.light}}/>
+                    <Grid item sm={10} md={8} xl={6}>
+                        <Box sx={{position: 'relative'}}>
+                            <Box
+                                component="img"
+                                src={backgroundImg} 
+                                sx={{
+                                width: '100%',
+                                height: 'auto',
+                                opacity: '0.3'
+                            }}></Box>
+                            <Box sx={{position: 'absolute', top: "20px", left: "10px"}}>
+                                <Box sx={{fontSize:'large'}}>
+                                    The Match, a Demo
+                                </Box>
+                                <Box sx={{fontSize: 'small'}}>
+                                    See the stages of the algorithm behind the medical residency match.  Read more about the&nbsp;
+                                    <Link href="https://en.wikipedia.org/wiki/Stable_marriage_problem" target="_blank">algo</Link> or at the&nbsp;
+                                    <Link href="https://www.nrmp.org/intro-to-the-match/how-matching-algorithm-works/" target="_target">match</Link> site.
+                                </Box>
+                            </Box>
+                            <Box sx={{position: 'absolute', bottom: "20px", left: "10px"}}>
+                                <Button variant="contained" color="primary" onClick={scrollDemoToView}>See the Demo</Button>
+                            </Box>
+                        </Box>
+                    </Grid>
+                    <Grid item sm={1} md={2} xl={3} sx={{backgroundColor: theme.secondary.light}}/>
+                </Grid>
 
-                <Box sx={{textAlign: 'center', my:2}}>
-                    Applicants and their Program Ranking
-                </Box>
-                <Stack direction="row" alignItems="stretch" justifyContent="center">
-                    {
-                        applications.map(el => {
-                            return <Applicant applicant={el} solved={solved}/>
-                        })
-                    }
-                </Stack>
-                <Box sx={{textAlign: 'center', my:2}}>
-                    Programs and their applicant ranking
-                </Box>
-                <Stack direction="row" alignItems="stretch" justifyContent="center">
-                    {
-                        Object.keys(programs).map(el => {
-
-                            return <Program program={programs[el]} />
-                        })
-                    }
-                </Stack>
-
-            </Stack>
-        </Box>
+                <MatchSection demoRef={demoRef}/>
+            </Box>
+        </ThemeProvider>
     );
 }
 
