@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/github.io/MedicalResidentMatchDemo/static/css/main.8dfc420f.css",
+    "main.js": "/github.io/MedicalResidentMatchDemo/static/js/main.2588ab97.js",
+    "static/media/network.jpg": "/github.io/MedicalResidentMatchDemo/static/media/network.a7c7fa2a765798dddc5f.jpg",
+    "index.html": "/github.io/MedicalResidentMatchDemo/index.html",
+    "main.8dfc420f.css.map": "/github.io/MedicalResidentMatchDemo/static/css/main.8dfc420f.css.map",
+    "main.2588ab97.js.map": "/github.io/MedicalResidentMatchDemo/static/js/main.2588ab97.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8dfc420f.css",
+    "static/js/main.2588ab97.js"
+  ]
+}
