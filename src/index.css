@@ -9,7 +9,7 @@ body {
 
 @keyframes iconPulse {
   0% {transform: scale(1.1)}
-  50% {transform: scale(1.4)}
+  50% {transform: scale(1.2)}
   100% {transform: scale(1)}
 }
 
@@ -28,4 +28,28 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+@keyframes firstUnstableMove {
+  0% {transform: scale(1)}
+  100% {transform: scale(1.04)}
+}
+
+.firstUnstable {
+  animation-name: firstUnstableMove; 
+  animation-duration: 1.5s; 
+  transform: scale(1.04); 
+  outline: solid 1px #f4e5c8;
+  transition: outline 1.5s linear;
+}
+
+@keyframes stableMove {
+  0% {transform: scale(1.04)}
+  100% {transform: scale(1)}
+}
+
+.stable {
+  animation-name: stableMove; 
+  animation-duration: .5s; 
+  transform: scale(1); 
 }

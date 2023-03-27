@@ -39,7 +39,7 @@ function getRandomOrder (optionsArr:string[]) {
 }
 
 function getRandomCapacity(){
-    let returnInt = Math.random()<.6 ? 2 : 1;
+    let returnInt = Math.random()<.4 ? 2 : 1;
     return returnInt
 }
 

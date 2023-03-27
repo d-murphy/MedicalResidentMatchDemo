@@ -9,38 +9,30 @@ import grey from "@mui/material/colors/grey";
 import { useTheme } from '@mui/material/styles';
 import PersonIcon from '@mui/icons-material/Person';
 
-import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
-import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
-import Collapse from '@mui/material/Collapse';
 import Avatar from '@mui/material/Avatar';
-import IconButton, { IconButtonProps } from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import { red } from '@mui/material/colors';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import ShareIcon from '@mui/icons-material/Share';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
+import { IconButtonProps } from '@mui/material/IconButton';
 
 
 
 interface ApplicantProps extends IconButtonProps {
     applicant: applicant, 
-    solved: boolean
+    solved: boolean, 
+    firstUnstable: boolean
 }
   
 
-export default function Applicant({applicant, solved}: ApplicantProps){
+export default function Applicant({applicant, solved, firstUnstable}: ApplicantProps){
     const theme = useTheme(); 
     return (
 
-        <Card sx={{ mx:1, width: '100%' }}>
+        <Card sx={{ mx:1, width: '100%' }} className={firstUnstable ? "firstUnstable" : "stable"}>
             <CardHeader
                 avatar={
-                    <Avatar sx={{ bgcolor: red[200], height: '35px', width: '35px' }} aria-label="applicant-icon">
+                    <Avatar sx={{ bgcolor: grey[400], height: '35px', width: '35px' }} aria-label="applicant-icon">
                         <PersonIcon fontSize="large" />
                     </Avatar>
                 }

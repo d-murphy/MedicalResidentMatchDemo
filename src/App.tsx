@@ -1,6 +1,5 @@
 import Grid from "@mui/material/Grid"; 
 import Box from '@mui/material/Box'; 
-import Link from '@mui/material/Link'; 
 import Button from "@mui/material/Button"; 
 import React, { useState, useRef } from "react";
 import MatchSection from "./components/MatchSection";
@@ -19,10 +18,10 @@ function App() {
 
     return (
         <ThemeProvider theme={theme}>
-            <Box className="App">
+            <Box className="App" >
                     
                 <Grid container >
-                    <Grid item sm={1} md={2} xl={3} sx={{backgroundColor: theme.palette.primary.light, opacity: '.4'}}/>
+                    <Grid item sm={1} md={2} xl={3} sx={{backgroundColor: theme.palette.primary.light, opacity: '.4', mb: "3px"}}/>
                     <Grid item sm={10} md={8} xl={6} >
                         <Box sx={{position: 'relative'}}>
                             <Box
@@ -49,17 +48,18 @@ function App() {
                             </Box>
                         </Box>
                     </Grid>
-                    <Grid item sm={1} md={2} xl={3} sx={{backgroundColor: theme.palette.primary.light, opacity: '.6'}}/>
+                    <Grid item sm={1} md={2} xl={3} sx={{backgroundColor: theme.palette.primary.light, opacity: '.6', mb:"3px"}}/>
                 </Grid>
 
-                <Box sx={{mt: 5}}>
+                <Box sx={{my:5}}>&nbsp;</Box>
+                <Box sx={{my: 5}}>
                     <MatchSection demoRef={demoRef} />
                 </Box>
             </Box>
         </ThemeProvider>
     );
 }
+export default App;
 
 //Image by <a href="https://www.freepik.com/free-photo/top-view-network-concept_15292452.htm#from_view=detail_serie">Freepik</a>
 
-export default App;

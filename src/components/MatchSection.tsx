@@ -23,10 +23,12 @@ export default function MatchSection({demoRef}: MatchSectionProps) {
     const message = lastTurn.message;
     const solved = lastTurn.solved;
 
+    let firstUnstable = -1;  
+
     return (
         <Grid container>
             <Grid item md={4} sm={12}>
-                <Stack sx={{ textAlign: "center", my: 2, border: 1, borderRadius: 2, p: 1 }} ref={demoRef}>
+                <Stack sx={{ textAlign: "center", my: 2, backgroundColor: grey[100], borderRadius:2, boxShadow:1, padding: 2 }} ref={demoRef}>
                     <Stack sx={{ width: '100%', alignItems: 'center', justifyContent: 'center', mt: 2 }}>
                         <Button sx={{ m: 1, width: '250px' }} variant="contained" onClick={() => dispatch('oneTurn')} disabled={solved} color="secondary" >
                             <Stack direction="row" alignItems="center" justifyContent="center">
@@ -43,8 +45,13 @@ export default function MatchSection({demoRef}: MatchSectionProps) {
                             <RepeatIcon />
                         </Button>
                     </Stack>
-                    <Box sx={{ my: 1 }}>Match Status:</Box>
-                    <Box sx={{ backgroundColor: grey[300], py: 2, borderRadius: 1 }}>{message}</Box>
+                    <Box sx={{ mb: 1, mt:5 }}>Match Status:</Box>
+                    <Box sx={{ backgroundColor: 'white', p: 2, borderRadius: 1, minHeight: '60px', 
+                        display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign:'center' }}>
+                        <Box>
+                            {message}
+                        </Box>
+                    </Box>
 
                 </Stack>
             </Grid>
@@ -55,15 +62,16 @@ export default function MatchSection({demoRef}: MatchSectionProps) {
                     Applicants and their Program Ranking
                     <Stack direction="row" alignItems="stretch" justifyContent="center" sx={{mt: 3}}>
                         {
-                            applications.map(el => {
-                                return <Applicant applicant={el} solved={solved} />
+                            applications.map((el, ind) => {
+                                if(firstUnstable < 0 && !el.stable) firstUnstable = ind; 
+                                return <Applicant applicant={el} solved={solved} firstUnstable={firstUnstable === ind}/>
                             })
                         }
                     </Stack>
                 </Box>
                 <Box sx={{ textAlign: 'center', m: 2, backgroundColor: grey[100], borderRadius:2, boxShadow:1, padding: 2 }}>
-                    Programs and their applicant ranking
-                    <Stack direction="row" alignItems="stretch" justifyContent="center" sx={{mb:5}}>
+                    Programs and their Applicant Ranking
+                    <Stack direction="row" alignItems="stretch" justifyContent="center" sx={{my:2}}>
                         {
                             Object.keys(programs).map(el => {
 
